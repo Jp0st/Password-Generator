@@ -1,57 +1,75 @@
 // Assignment code here
 
-var test = "";
 
 function askUpperCase(){
   var ifUpperCase = confirm("Would you like to include uppercase letters?");
+  
   if(ifUpperCase){
-    test = "yes";
-    console.log(test +" uppercase");
+    var answer = "yes";
+    console.log(answer +" uppercase");
   }else{
-    test = "no";
-    console.log(test +" uppercase");
+    var answer = "no";
+    console.log(answer +" uppercase");
   }
 }
 
 function askLowerCase(){
   var ifLowerCase = confirm("Would you like to include lowercase letters?");
+  
   if(ifLowerCase){
-    test = "yes";
-    console.log(test +" lowercase");
+    var answer = "yes";
+    console.log(answer +" lowercase");
   }else{
-    test = "no";
-    console.log(test +" lowercase");
+    var answer = "no";
+    console.log(answer +" lowercase");
   }
 }
 
 function askNumber(){
   var ifNumber = confirm("Would you like to include numbers?");
+ 
   if(ifNumber){
-    test = "yes";
-    console.log(test +" number");
+    var answer = "yes";
+    console.log(answer +" number");
   }else{
-    test = "no";
-    console.log(test +" number");
+    var answer = "no";
+    console.log(answer +" number");
   }
 }
 
 function askSpecial(){
   var ifSpecial = confirm("Would you like to include special characters?");
+  
   if(ifSpecial){
-    test = "yes";
-    console.log(test +" characters");
+    var answer = "yes";
+    console.log(answer +" characters");
   }else{
-    test = "no";
-    console.log(test +" characters");
+    var answer = "no";
+    console.log(answer +" characters");
   }
 }
 
+function askLength(){
+  var passwordLength = prompt("How long you would like the password to be?");
+  var answer = parseInt(passwordLength);
+
+  if(answer < "8"){
+    alert("Sorry, password must be at least 8 characters long.");
+    askLength();
+  }else if(answer > "128"){
+    alert("Sorry, password cannot be longer than 128 characters.");
+    askLength()
+  }else{
+    console.log(answer);
+  }
+}
 
 function generatePassword(){
   askUpperCase();
   askLowerCase();
   askNumber();
   askSpecial();
+  askLength();
 }
 
 
