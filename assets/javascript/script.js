@@ -1,10 +1,17 @@
 // Assignment code here
 
+//variables
+var passwordLength = "";
+var ifUpperCase = "";
+var ifLowerCase = "";
+var ifNumber = "";
+var ifSpecial = "";
 
+//user input functions
 function askUpperCase(){
-  var ifUpperCase = confirm("Would you like to include uppercase letters?");
+  var ifUpperCaseTemp = confirm("Would you like to include uppercase letters?");
   
-  if(ifUpperCase){
+  if(ifUpperCaseTemp){
     var answer = "yes";
     console.log(answer +" uppercase");
   }else{
@@ -14,9 +21,9 @@ function askUpperCase(){
 }
 
 function askLowerCase(){
-  var ifLowerCase = confirm("Would you like to include lowercase letters?");
+  var ifLowerCaseTemp = confirm("Would you like to include lowercase letters?");
   
-  if(ifLowerCase){
+  if(ifLowerCaseTemp){
     var answer = "yes";
     console.log(answer +" lowercase");
   }else{
@@ -26,9 +33,9 @@ function askLowerCase(){
 }
 
 function askNumber(){
-  var ifNumber = confirm("Would you like to include numbers?");
+  var ifNumberTemp = confirm("Would you like to include numbers?");
  
-  if(ifNumber){
+  if(ifNumberTemp){
     var answer = "yes";
     console.log(answer +" number");
   }else{
@@ -38,29 +45,42 @@ function askNumber(){
 }
 
 function askSpecial(){
-  var ifSpecial = confirm("Would you like to include special characters?");
+  var ifSpecialTemp = confirm("Would you like to include special characters?");
   
-  if(ifSpecial){
+  if(ifSpecialTemp){
     var answer = "yes";
     console.log(answer +" characters");
   }else{
     var answer = "no";
     console.log(answer +" characters");
   }
+  
 }
 
 function askLength(){
-  var passwordLength = prompt("How long you would like the password to be?");
-  var answer = parseInt(passwordLength);
-
-  if(answer < "8"){
-    alert("Sorry, password must be at least 8 characters long.");
+  var answer = prompt("How long you would like the password to be?");
+ 
+  if(answer === ""){
+    alert("Sorry you must enter a password length");
     askLength();
-  }else if(answer > "128"){
-    alert("Sorry, password cannot be longer than 128 characters.");
-    askLength()
+  }else if (answer){
+    var passwordLengthTemp = parseInt(answer);
+    if(passwordLengthTemp < "8"){
+      alert("Sorry, password must be at least 8 characters long.");
+      askLength();
+    }else if(passwordLengthTemp > "128"){
+      alert("Sorry, password cannot be longer than 128 characters.");
+      askLength()
+    }else if(passwordLengthTemp === ""){
+      alert("Sorry, you must select a length");
+      askLength()
+    }else{
+      console.log(passwordLengthTemp);
+      passwordLength = passwordLengthTemp;
+    }
   }else{
-    console.log(answer);
+    alert("Sorry you must enter a password length");
+    askLength();
   }
 }
 
@@ -70,6 +90,8 @@ function generatePassword(){
   askNumber();
   askSpecial();
   askLength();
+
+  console.log(passwordLength);
 }
 
 
