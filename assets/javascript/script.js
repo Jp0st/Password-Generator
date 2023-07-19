@@ -1,11 +1,13 @@
 // Assignment code here
 
 //variables
-var passwordLength = "";
-var ifUpperCase = "";
-var ifLowerCase = "";
-var ifNumber = "";
-var ifSpecial = "";
+var passwordLength= "";
+var numbers ="0123456789";
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+var specialChar = "!@#$%^&*()";
+var usedCharacters = "";
+
 
 //user input functions
 function askUpperCase(){
@@ -13,22 +15,15 @@ function askUpperCase(){
   
   if(ifUpperCaseTemp){
     var answer = "yes";
-    console.log(answer +" uppercase");
-  }else{
-    var answer = "no";
-    console.log(answer +" uppercase");
+    usedCharacters = usedCharacters.concat(upperCase);
   }
 }
 
 function askLowerCase(){
   var ifLowerCaseTemp = confirm("Would you like to include lowercase letters?");
-  
+
   if(ifLowerCaseTemp){
-    var answer = "yes";
-    console.log(answer +" lowercase");
-  }else{
-    var answer = "no";
-    console.log(answer +" lowercase");
+    usedCharacters = usedCharacters.concat(lowerCase);
   }
 }
 
@@ -36,11 +31,7 @@ function askNumber(){
   var ifNumberTemp = confirm("Would you like to include numbers?");
  
   if(ifNumberTemp){
-    var answer = "yes";
-    console.log(answer +" number");
-  }else{
-    var answer = "no";
-    console.log(answer +" number");
+    usedCharacters = usedCharacters.concat(numbers);
   }
 }
 
@@ -48,13 +39,8 @@ function askSpecial(){
   var ifSpecialTemp = confirm("Would you like to include special characters?");
   
   if(ifSpecialTemp){
-    var answer = "yes";
-    console.log(answer +" characters");
-  }else{
-    var answer = "no";
-    console.log(answer +" characters");
+    usedCharacters = usedCharacters.concat(specialChar);
   }
-  
 }
 
 function askLength(){
@@ -75,7 +61,6 @@ function askLength(){
       alert("Sorry, you must select a length");
       askLength()
     }else{
-      console.log(passwordLengthTemp);
       passwordLength = passwordLengthTemp;
     }
   }else{
@@ -90,10 +75,17 @@ function generatePassword(){
   askNumber();
   askSpecial();
   askLength();
-
-  console.log(passwordLength);
+  
+  var generatedPassword= "";
+  
+  for(i=0; i <= passwordLength - 1; i++){
+    var passwordItem = usedCharacters.charAt(Math.floor(Math.random() * usedCharacters.length));
+     generatedPassword = generatedPassword.concat(passwordItem);
+  }
+ 
+  alert("Your randomly generated password is: " + generatedPassword);
+  usedCharacters = "";
 }
-
 
 
 
@@ -104,9 +96,6 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
 }
 
 // Add event listener to generate button
